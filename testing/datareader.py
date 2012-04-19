@@ -16,6 +16,7 @@ dict_max = dict_length
 dict_counter = 0
 
 #return dict_lists' index number for a given player's name; see below
+#it's CASE SENSITIVE RIGHT NOW; ie Lebron James doesn't work but LeBron James does
 player_key = {}
 
 while dict_counter < dict_max:
