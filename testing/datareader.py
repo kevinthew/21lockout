@@ -1,7 +1,7 @@
 import csv
 
 
-def table_ripper(table_name, table_stat):
+def stat_ripper(table_player_name, table_stat_category):
 
     rawplayerdata = csv.DictReader(open('testing.csv', 'rb'))
 
@@ -25,9 +25,9 @@ def table_ripper(table_name, table_stat):
 
     player_card = dict_list
 
-    return player_card[player_key[table_name]].get(table_stat)
+    return player_card[player_key[table_player_name]].get(table_stat_category)
 
 
 #example
-print table_ripper('LeBron James', 'Height')
+print stat_ripper('LeBron James', 'Height')
 
