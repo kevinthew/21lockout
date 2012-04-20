@@ -1,6 +1,7 @@
 import csv
 
 #rudimentary sql wannabes
+#compress the stat rippers into one function
 def player_stat_ripper(table_player_name, table_stat_category):
 
     rawplayerdata = csv.DictReader(open('testing.csv', 'rb'))
