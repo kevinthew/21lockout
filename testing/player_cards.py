@@ -14,4 +14,3 @@ def user_stats(user_name):
 user_profile = user_stats(user_name)
 opponent_profile = user_stats(opponent_name)
 
-
