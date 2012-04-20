@@ -1,5 +1,9 @@
 import csv
 
+
+#user_id
+#opponent_id
+
 #rudimentary sql wannabes
 #compress the stat rippers into one function
 def player_stat_ripper(table_player_name, table_stat_category):
@@ -67,11 +71,41 @@ def speed_calculator(name):
     return player_speed
 
 #example
-name = 'Ty Lawson'
-name1 = 'Nene Hilario'
-print name + ' : ' + str(speed_calculator(name))
-print name1 + ' : ' + str(speed_calculator(name1))
+#name = 'Ty Lawson'
+#name1 = 'Nene Hilario'
+#print name + ' : ' + str(speed_calculator(name))
+#print name1 + ' : ' + str(speed_calculator(name1))
 
+
+def stamina_calculator(name):
+    
+    player_stamina = 5 #fix this formula
+    return player_stamina
+
+
+
+def offense_calculator(name):
+    
+    player_offense = 5 #fix this formula
+    return player_offense
+
+
+def special_offense_calculator(name):
+    
+    player_special_offense = 5 #fix this formula
+    return player_special_offense
+
+
+def defense_calculator(name):
+    
+    player_defense = 5 #fix this formula
+    return player_defense
+
+
+def special_defense_calculator(name):
+    
+    player_special_defense = 5 #fix this formula
+    return player_special_defense
 
 
 #build a player_profile class, using all the calculators;
