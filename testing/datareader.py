@@ -1,9 +1,5 @@
 import csv
 
-
-#user_id
-#opponent_id
-
 #rudimentary sql wannabes
 #compress the stat rippers into one function
 def player_stat_ripper(table_player_name, table_stat_category):
@@ -60,29 +56,38 @@ def team_stat_ripper(table_team_name, table_stat_category):
 #name = "Jose Barea"
 #team = player_stat_ripper(name, 'Team')
 
-#calculates end-to-end speed; calculated by bref position and team pace
+#calculates speed; calculated by bref position and team pace
 def speed_calculator(name):
+
     playerteam = player_stat_ripper(name, 'Team')
-    
-    teampace = team_stat_ripper(playerteam, 'adj pace')
-    player_base_speed = player_stat_ripper(name, 'Position')
-    adj_player_speed = (10 - float(player_base_speed))*10
-    player_speed = float(teampace) * (adj_player_speed) * 1.1764705882352941176470588235294 #modifier; Ty Lawson is fastest and '100' with this
+    team_pace = float(team_stat_ripper(playerteam, 'adj pace'))
+    player_base_speed = float(player_stat_ripper(name, 'Position'))
+
+    adj_player_speed = (10 - player_base_speed)*10
+
+    #modifier 1.17 makes Ty lawson fastest player
+    player_speed = round(team_pace * adj_player_speed * 1.176470588235294117) 
     return player_speed
 
-#example
-#name = 'Ty Lawson'
-#name1 = 'Nene Hilario'
-#print name + ' : ' + str(speed_calculator(name))
-#print name1 + ' : ' + str(speed_calculator(name1))
+#calculates 'hit points' or rather 'score' needed before they give up
+def score_calculator(name):
 
+    player_minutes = float(player_stat_ripper(name, '%Min'))
+
+    #couple modifiers here; minimum of 5 hps, 1.265823 modifier based on max %min
+    player_hit_points = round(((player_minutes * 1.265823)*21) + 5)
+    return player_hit_points
 
 def stamina_calculator(name):
-    
-    player_stamina = 5 #fix this formula
+
+    player_minutes = float(player_stat_ripper(name, '%Min'))
+    player_age = float(player_stat_ripper(name, 'Age on Jan 1 2012'))
+
+    adj_player_minutes = player_minutes * 1.265823
+    adj_player_age = 100 - player_age
+
+    player_stamina = round(adj_player_minutes * adj_player_age)
     return player_stamina
-
-
 
 def offense_calculator(name):
     
