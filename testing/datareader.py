@@ -22,7 +22,7 @@ def player_stat_ripper(table_player_name, table_stat_category):
     while dict_counter < dict_max:
         #print dict_counter
         player_key[dict_list[dict_counter].get('Player')] = dict_counter
-        dict_counter = dict_counter + 1
+        dict_counter += 1
 
     if dict_list[player_key[table_player_name]].get(table_stat_category) is '': 
         return 0 #this may throw errors later if expecting a string like Team or Player
@@ -50,7 +50,7 @@ def team_stat_ripper(table_team_name, table_stat_category):
     while dict_counter < dict_max:
         #print dict_counter
         team_key[dict_list[dict_counter].get('team')] = dict_counter
-        dict_counter = dict_counter + 1
+        dict_counter += 1
 
     return dict_list[team_key[table_team_name]].get(table_stat_category)
 
