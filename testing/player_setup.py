@@ -2,4 +2,4 @@
 ### keep these variable names until building classes
 
 user_name = 'Mario Chalmers'
-opponent_name = "LeBron James"
+opponent_name = "Daniel Orton"

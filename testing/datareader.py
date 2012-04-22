@@ -16,7 +16,7 @@ def player_stat_ripper(table_player_name, table_stat_category):
     dict_counter = 0
 
     #return dict_lists' index number for a given player's name; see below
-    #it's case sensitive; ie Lebron James won't pass but LeBron James does
+    #it's case sensitive; ie 'Lebron James' won't pass but 'LeBron James' does
     player_key = {}
 
     while dict_counter < dict_max:
@@ -24,9 +24,12 @@ def player_stat_ripper(table_player_name, table_stat_category):
         player_key[dict_list[dict_counter].get('Player')] = dict_counter
         dict_counter = dict_counter + 1
 
-    return dict_list[player_key[table_player_name]].get(table_stat_category)
+    if dict_list[player_key[table_player_name]].get(table_stat_category) is '': 
+        return 0 #this may throw errors later if expecting a string like Team or Player
+    else:
+        return dict_list[player_key[table_player_name]].get(table_stat_category)
 
-
+#for teams: enter team name and stat field you want; bam you get it
 def team_stat_ripper(table_team_name, table_stat_category):
 
     rawplayerdata = csv.DictReader(open('teamtesting.csv', 'rb'))
@@ -63,31 +66,38 @@ def speed_calculator(name):
     team_pace = float(team_stat_ripper(playerteam, 'adj pace'))
     player_base_speed = float(player_stat_ripper(name, 'Position'))
 
+    #i just like the way this made up stat looks, YA'LL
     adj_player_speed = (10 - player_base_speed)*10
 
-    #modifier 1.17 makes Ty lawson fastest player
-    player_speed = round(team_pace * adj_player_speed * 1.176470588235294117) 
+    #modifier 1.176 makes Ty lawson fastest player; i took out the modifier
+    #there's really no reason for it; it takes away from ability to alter
+    player_speed = round(team_pace * adj_player_speed)
     return player_speed
+
 
 #calculates 'hit points' or rather 'score' needed before they give up
 def score_calculator(name):
 
     player_minutes = float(player_stat_ripper(name, '%Min'))
-
-    #couple modifiers here; minimum of 5 hps, 1.265823 modifier based on max %min
-    player_hit_points = round(((player_minutes * 1.265823)*21) + 5)
+    #find_max_hp = 
+    #couple modifiers here; minimum of 5 hps; 21 is the base score weight; 
+    # the 1.266 number should be modified to a generic, like w/speed
+    player_hit_points = round(((player_minutes * 1.266)*21) + 5)
     return player_hit_points
+
+
 
 def stamina_calculator(name):
 
     player_minutes = float(player_stat_ripper(name, '%Min'))
     player_age = float(player_stat_ripper(name, 'Age on Jan 1 2012'))
 
-    adj_player_minutes = player_minutes * 1.265823
+    adj_player_minutes = player_minutes * 1.266 #see above
     adj_player_age = 100 - player_age
 
     player_stamina = round(adj_player_minutes * adj_player_age)
     return player_stamina
+
 
 def offense_calculator(name):
     
