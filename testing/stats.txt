@@ -1,0 +1,58 @@
+player cards
+---
+
+create stats for:
+
+stamina
+offense
+defense
+special o
+special d
+
+modify/add complexity to:
+
+speed
+
+
+
+
+
+combat functions
+---
+opentest is effectively first check if offense attempts to score
+
+for 3pt, only check against defense
+for mid range, another check will be built (v. block down-weighted)
+for close, another check will be built (v. block normal-weighted, steal upped, height check)
+
+
+If passes checks,
+
+offense takes shot @ shooting percentage listed in stat table;
+stat table does not include PERCENTAGES via long, mid and close -- calculate from
+bref and 82 tables
+
+
+If miss,
+offensive v. rebounding % checks; weighted by distance of shot / individual stats (special o for offense v. regular defense)
+
+
+
+If make, flavor-text displays weighted random type of shot; so if close, REVERSE JAM ETC ETC;
+mid-range? fade away post shot, etc
+
+If make defenses/offense switch, and start over
+
+
+moves will be:
+long (3pt)
+mid
+close
+2 specials (one O, one D); not unique but dependent on position/skill
+1 unique to player
+
+
+
+
+http://www.khanacademy.org/#probability
+
