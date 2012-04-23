@@ -5,9 +5,13 @@
 from datareader import *
 from player_setup import user_name, opponent_name, user_combat_position, opponent_combat_position
 
-
+#combat card dict builder
 def user_stats(user_name):
     user_card = {'name': user_name,
+<<<<<<< HEAD
+=======
+                 'score': score_calculator(user_name),
+>>>>>>> 92d37aa37535db2b87c357280a60244763eb7bd7
                  'stamina': stamina_calculator(user_name),
                  'speed': speed_calculator(user_name),
                  'offense': offense_calculator(user_name),
