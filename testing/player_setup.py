@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ### player info dumped here; stat rollers grab the name from here
 
 
