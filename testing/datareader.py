@@ -92,19 +92,22 @@ def stamina_calculator(name):
     player_minutes = float(player_stat_ripper(name, '%Min'))
     player_age = float(player_stat_ripper(name, 'Age on Jan 1 2012'))
 
-    adj_player_minutes = player_minutes * 1.266 #see above
+    adj_player_minutes = player_minutes * 1.266 #see above for constant change
     adj_player_age = 100 - player_age
 
     player_stamina = round(adj_player_minutes * adj_player_age)
     return player_stamina
 
 
+#still need to fix this one; this is just a test version now
 def offense_calculator(name):
     
-    player_offense = 5 #fix this formula
-    return player_offense
-
-
+    player_usage = (float(player_stat_ripper(name, 'USG%'))*.01)
+    player_offense = player_usage * float(player_stat_ripper(name, 'ORtg')) * float(player_stat_ripper(name, 'eFG%'))
+    adj_player_offense = round((player_offense * 3.5458) + 5)
+    return adj_player_offense
+#don't know how I'm going to factor these stats into the dice roll checks yet
+#that's the main issue, then i can set them better
 def special_offense_calculator(name):
     
     player_special_offense = 5 #fix this formula
