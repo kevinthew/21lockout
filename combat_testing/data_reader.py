@@ -1,10 +1,9 @@
 import csv
 
-#rudimentary sql wannabes
-#compress the stat rippers into one function
+#sql-like stat ripping function from CSV tables
 def player_stat_ripper(table_player_name, table_stat_category):
 
-    rawplayerdata = csv.DictReader(open('testing.csv', 'rb'))
+    rawplayerdata = csv.DictReader(open('../data/players.csv', 'rb'))
 
     dict_list = []
 
@@ -29,10 +28,11 @@ def player_stat_ripper(table_player_name, table_stat_category):
     else:
         return dict_list[player_key[table_player_name]].get(table_stat_category)
 
+
 #for teams: enter team name and stat field you want; bam you get it
 def team_stat_ripper(table_team_name, table_stat_category):
 
-    rawplayerdata = csv.DictReader(open('teamtesting.csv', 'rb'))
+    rawplayerdata = csv.DictReader(open('../data/teams.csv', 'rb'))
 
     dict_list = []
 
@@ -106,6 +106,8 @@ def offense_calculator(name):
     player_offense = player_usage * float(player_stat_ripper(name, 'ORtg')) * float(player_stat_ripper(name, 'eFG%'))
     adj_player_offense = round((player_offense * 3.5458) + 5)
     return adj_player_offense
+
+
 #don't know how I'm going to factor these stats into the dice roll checks yet
 #that's the main issue, then i can set them better
 def special_offense_calculator(name):

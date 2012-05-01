@@ -2,6 +2,4 @@
 #so number of players / 30; randomly populate gym with 10 players from that grouping
 
 import player_setup
-import opentest
-
-raw_input()
+import combat_functions

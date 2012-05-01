@@ -1,5 +1,5 @@
 import random
-from datareader import player_stat_ripper
+from data_reader import player_stat_ripper
 from player_cards import user_profile, opponent_profile
 
 #feed into probabilities below
@@ -17,12 +17,7 @@ offense_mid_stamina = .95 * (user_profile['stamina'])
 offense_mid_speed = offense_speed
 offense_close_stamina = .75 * (user_profile['stamina'])
 offense_close_speed = .75 * (user_profile['speed'])
-
-
 #how these are defined needs to change; there has to be an easier way
-
-print user_profile
-print opponent_profile
 
 #weighted probabilities
 offense_to_take_shot = [float(player_stat_ripper(offense_name, 'TOV%')), (100 - float(player_stat_ripper(offense_name, 'TOV%')))]
@@ -35,7 +30,6 @@ offense_to_rebound = [(100 - float(player_stat_ripper(offense_name, 'ORB%'))), (
 #making a defense stat up
 def_combined_mod =  100 - (float(player_stat_ripper(defense_name, 'BLK%')) + float(player_stat_ripper(defense_name, 'STL%')))
 defense_to_block_and_steal = [def_combined_mod, 100 - def_combined_mod]
-
 
 #weighted probability roller
 def encounterweights(weights):
@@ -126,10 +120,16 @@ def offense_close_range(offense, defense):
         return off_fail_close(defense)
     else:
         return off_suc_close(defense) 
-     
+
+
+###############################################
+#this needs to be written differently/different spot
 #testing output
+
+#loop vars
 i = 0
 counter = []
+
 while i < 100:
 
     output_counter = offense_mid_range(offense_to_take_shot, defense_to_block_and_steal)
@@ -142,4 +142,8 @@ print offense_name + ' : ' + str(counters.count(offense_name))
 print defense_name + ' : ' + str(counters.count(defense_name))
 
 raw_input()
+
+
+
+
 
