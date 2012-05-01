@@ -2,6 +2,7 @@ import random
 from data_reader import player_stat_ripper
 from player_cards import user_profile, opponent_profile
 
+
 #feed into probabilities below
 offense_name = user_profile['name']
 defense_name = opponent_profile['name']
@@ -124,26 +125,70 @@ def offense_close_range(offense, defense):
 
 ###############################################
 #this needs to be written differently/different spot
-#testing output
+#testing output for shot types
 
-#loop vars
-i = 0
-counter = []
+def shot_mid():
 
-while i < 100:
+    i = 0
+    counter = []
 
-    output_counter = offense_mid_range(offense_to_take_shot, defense_to_block_and_steal)
-    counter.append(output_counter)
-    i += 1
+    while i < 100:
+
+        output_counter = offense_mid_range(offense_to_take_shot, defense_to_block)
+        counter.append(output_counter)
+        i += 1
     
-counters = ''.join(counter)
+    counters = ''.join(counter)
 
-print offense_name + ' : ' + str(counters.count(offense_name))
-print defense_name + ' : ' + str(counters.count(defense_name))
+    offense_output = offense_name + ' : ' + str(counters.count(offense_name))
+    defense_output = defense_name + ' : ' + str(counters.count(defense_name))
 
-raw_input()
+    return offense_output + '\n' + defense_output
 
+def shot_long():
 
+    i = 0
+    counter = []
 
+    while i < 100:
+
+        output_counter = offense_long_range(offense_to_take_shot, defense_to_steal)
+        counter.append(output_counter)
+        i += 1
+    
+    counters = ''.join(counter)
+
+    offense_output = offense_name + ' : ' + str(counters.count(offense_name))
+    defense_output = defense_name + ' : ' + str(counters.count(defense_name))
+
+    return offense_output + '\n' + defense_output
+
+def shot_close():
+
+    i = 0
+    counter = []
+
+    while i < 100:
+
+        output_counter = offense_close_range(offense_to_take_shot, defense_to_block_and_steal)
+        counter.append(output_counter)
+        i += 1
+    
+    counters = ''.join(counter)
+
+    offense_output = offense_name + ' : ' + str(counters.count(offense_name))
+    defense_output = defense_name + ' : ' + str(counters.count(defense_name))
+
+    return offense_output + '\n' + defense_output
+
+def shot_maker(shot_value):
+    if shot_value == 'shot_close':
+        return shot_close()
+    if shot_value == 'shot_mid':
+        return shot_mid()
+    if shot_value == 'shot_long':
+        return shot_long()
+
+#I'm sorry world
 
 
